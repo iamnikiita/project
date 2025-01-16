@@ -1,7 +1,23 @@
 from django.shortcuts import render
 from accounts.models import *
 from django.http import HttpResponseRedirect
+import hmac
+import hashlib
+import base64
+import uuid
 
+def genSha256(key, message):
+        key = key.encode('utf-8')
+        message = message.encode('utf-8')
+
+        hmac_sha256 = hmac.new(key, message, hashlib.sha256)
+        digest = hmac_sha256.digest()
+
+        signature = base64.b64encode(digest).decode('utf-8')
+
+        return signature
+
+        return signature
 def index(request):
     movies = Movie.objects.all().order_by('-movie_rating')
     context = {
@@ -38,8 +54,19 @@ def ticket(request, id):
     ticket = Bookings.objects.get(id=id)
     selected_seats = ticket.useat.split(',')  # List of selected seats
     total_price = len(selected_seats) * ticket.shows.price
+    print(total_price)
+    secret_key = "8gBm/:&EnhH.1/q"
+    uuid_val = uuid.uuid4()
+    data_to_sign = f"total_amount={total_price},transaction_uuid={uuid_val},product_code=EPAYTEST"
+    result = genSha256(secret_key, data_to_sign)
     context = {
         'ticket': ticket,
-        'total_price': total_price
+        'total_price': total_price,
+        'uuid':uuid_val,
+        'signature':result,
+
+
     }
+
     return render(request, "ticket.html", context)
+

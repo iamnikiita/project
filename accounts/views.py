@@ -166,3 +166,6 @@ def add_shows(request):
             's':sh
         }
         return render(request,"add_shows.html", data)
+    
+
+    
