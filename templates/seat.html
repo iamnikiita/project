@@ -1,339 +1,159 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}
 <title>BoxOffice | {{show.movie.movie_name}} </title>
 {% endblock %}
-
 {% block style %}
 <link rel="stylesheet" href="{% static 'styles/seat.css' %}">
 <style>
-  .hall__screen {
-    background-image: url({{show.movie.movie_poster.url}});
-  }
+    .hall__screen {
+        background-image: url({{show.movie.movie_poster.url}});
+    }
 </style>
 {% endblock %}
-
-
-<div class="d-none">
-  <div class="col-2">
-    <img src="{{show.movie.movie_poster.url}}" height="300px">
-  </div>
-
-  <div class="col-3">
-    <h1 class="display-5"> {{show.movie.movie_name}} </h1>
-    <h1 class="display-5"> {{show.cinema.cinema_name}} </h1>
-    <h1 class="display-5"> {{show.time}} </h1>
-    <h1 class="display-5"> Rs {{show.price}} </h1>
-  </div>
-</div>
-
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
-            <input type="hidden" value="{{show.price}}" name="amount" id="ticket_price" readonly>
-    <div class="col-12 hall" style="background: linear-gradient(360deg, black, #1f1f1f);">
-      <form action="{% url 'booked' %}" method="POST" id="book">
-        {% csrf_token %}
-        <input type="hidden" value="{{show.shows}}" name="show" readonly>
-
-
-        <div class="hall__screen"></div>
-
-
-        <div class="seats">
-
-          <div class="row">
-            <h3 class="text-white m-2">A</h3>
-            <div class="seat" id="A1">
-              <input type="checkbox" value="#A1" id="seatA1" name="check" />
-              <label for="seatA1"></label>
-            </div>
-            <div class="seat" id="A2">
-              <input type="checkbox" value="#A2" id="seatA2" name="check" />
-              <label for="seatA2"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="A3">
-              <input type="checkbox" value="#A3" id="seatA3" name="check" />
-              <label for="seatA3"></label>
-            </div>
-            <div class="seat" id="A4">
-              <input type="checkbox" value="#A4" id="seatA4" name="check" />
-              <label for="seatA4"></label>
-            </div>
-            <div class="seat" id="A5">
-              <input type="checkbox" value="#A5" id="seatA5" name="check" />
-              <label for="seatA5"></label>
-            </div>
-            <div class="seat" id="A6">
-              <input type="checkbox" value="#A6" id="seatA6" name="check" />
-              <label for="seatA6"></label>
-            </div>
-            <div class="seat" id="A7">
-              <input type="checkbox" value="#A7" id="seatA7" name="check" />
-              <label for="seatA7"></label>
-            </div>
-            <div class="seat" id="A8">
-              <input type="checkbox" value="#A8" id="seatA8" name="check" />
-              <label for="seatA8"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="A9">
-              <input type="checkbox" value="#A9" id="seatA9" name="check" />
-              <label for="seatA9"></label>
-            </div>
-            <div class="seat" id="A10">
-              <input type="checkbox" value="#A10" id="seatA10" name="check" />
-              <label for="seatA10"></label>
-            </div>
-          </div>
-
-          <div class="row">
-            <h3 class="text-white m-2">B</h3>
-            <div class="seat" id="B1">
-              <input type="checkbox" value="#B1" id="seatB1" name="check" />
-              <label for="seatB1"></label>
-            </div>
-            <div class="seat" id="B2">
-              <input type="checkbox" value="#B2" id="seatB2" name="check" />
-              <label for="seatB2"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="B3">
-              <input type="checkbox" value="#B3" id="seatB3" name="check" />
-              <label for="seatB3"></label>
-            </div>
-            <div class="seat" id="B4">
-              <input type="checkbox" value="#B4" id="seatB4" name="check" />
-              <label for="seatB4"></label>
-            </div>
-            <div class="seat" id="B5">
-              <input type="checkbox" value="#B5" id="seatB5" name="check" />
-              <label for="seatB5"></label>
-            </div>
-            <div class="seat" id="B6">
-              <input type="checkbox" value="#B6" id="seatB6" name="check" />
-              <label for="seatB6"></label>
-            </div>
-            <div class="seat" id="B7">
-              <input type="checkbox" value="#B7" id="seatB7" name="check" />
-              <label for="seatB7"></label>
-            </div>
-            <div class="seat" id="B8">
-              <input type="checkbox" value="#B8" id="seatB8" name="check" />
-              <label for="seatB8"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="B9">
-              <input type="checkbox" value="#B9" id="seatB9" name="check" />
-              <label for="seatB9"></label>
-            </div>
-            <div class="seat" id="B10">
-              <input type="checkbox" value="#B10" id="seatB10" name="check" />
-              <label for="seatB10"></label>
-            </div>
-          </div>
-
-          <div class="row">
-            <h3 class="text-white m-2">C</h3>
-            <div class="seat" id="C1">
-              <input type="checkbox" value="#C1" id="seatC1" name="check" />
-              <label for="seatC1"></label>
-            </div>
-            <div class="seat" id="C2">
-              <input type="checkbox" value="#C2" id="seatC2" name="check" />
-              <label for="seatC2"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="C3">
-              <input type="checkbox" value="#C3" id="seatC3" name="check" />
-              <label for="seatC3"></label>
-            </div>
-            <div class="seat" id="C4">
-              <input type="checkbox" value="#C4" id="seatC4" name="check" />
-              <label for="seatC4"></label>
-            </div>
-            <div class="seat" id="C5">
-              <input type="checkbox" value="#C5" id="seatC5" name="check" />
-              <label for="seatC5"></label>
-            </div>
-            <div class="seat" id="C6">
-              <input type="checkbox" value="#C6" id="seatC6" name="check" />
-              <label for="seatC6"></label>
-            </div>
-            <div class="seat" id="C7">
-              <input type="checkbox" value="#C7" id="seatC7" name="check" />
-              <label for="seatC7"></label>
-            </div>
-            <div class="seat" id="C8">
-              <input type="checkbox" value="#C8" id="seatC8" name="check" />
-              <label for="seatC8"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="C9">
-              <input type="checkbox" value="#C9" id="seatC9" name="check" />
-              <label for="seatC9"></label>
-            </div>
-            <div class="seat" id="C10">
-              <input type="checkbox" value="#C10" id="seatC10" name="check" />
-              <label for="seatC10"></label>
-            </div>
-          </div>
-
-          <div class="row">
-            <h3 class="text-white m-2">D</h3>
-            <div class="seat" id="D1">
-              <input type="checkbox" value="#D1" id="seatD1" name="check" />
-              <label for="seatD1"></label>
-            </div>
-            <div class="seat" id="D2">
-              <input type="checkbox" value="#D2" id="seatD2" name="check" />
-              <label for="seatD2"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="D3">
-              <input type="checkbox" value="#D3" id="seatD3" name="check" />
-              <label for="seatD3"></label>
-            </div>
-            <div class="seat" id="D4">
-              <input type="checkbox" value="#D4" id="seatD4" name="check" />
-              <label for="seatD4"></label>
-            </div>
-            <div class="seat" id="D5">
-              <input type="checkbox" value="#D5" id="seatD5" name="check" />
-              <label for="seatD5"></label>
-            </div>
-            <div class="seat" id="D6">
-              <input type="checkbox" value="#D6" id="seatD6" name="check" />
-              <label for="seatD6"></label>
-            </div>
-            <div class="seat" id="D7">
-              <input type="checkbox" value="#D7" id="seatD7" name="check" />
-              <label for="seatD7"></label>
-            </div>
-            <div class="seat" id="D8">
-              <input type="checkbox" value="#D8" id="seatD8" name="check" />
-              <label for="seatD8"></label>
-            </div>
-            <div class="space"></div>
-            <div class="seat" id="D9">
-              <input type="checkbox" value="#D9" id="seatD9" name="check" />
-              <label for="seatD9"></label>
-            </div>
-            <div class="seat" id="D10">
-              <input type="checkbox" value="#D10" id="seatD10" name="check" />
-              <label for="seatD10"></label>
-            </div>
-          </div>
+    <div class="row">
+        <input type="hidden" value="{{show.price}}" name="amount" id="ticket_price" readonly>
+        <div class="col-12 hall" style="background: linear-gradient(360deg, black, #1f1f1f);">
+            <form action="{% url 'initiate_booking' %}" method="POST" id="book">
+                {% csrf_token %}
+                <input type="hidden" value="{{show.shows}}" name="show" readonly>
+                <input type="hidden" name="selected_seats" id="selected_seats" value="">
+                <input type="hidden" name="total_amount" id="total_amount" value="">
+                <div class="hall__screen"></div>
+                <div class="seats">
+                    {% for row in 'ABCD'|make_list %}
+                    <div class="row">
+                        <h3 class="text-white m-2">{{row}}</h3>
+                        {% for num in '12345678910'|make_list %}
+                        {% if num == '3' or num == '9' %}
+                        <div class="space"></div>
+                        {% endif %}
+                        <div class="seat" id="{{row}}{{num}}">
+                            <input type="checkbox" value="{{row}}{{num}}" id="seat{{row}}{{num}}" name="check" />
+                            <label for="seat{{row}}{{num}}"></label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
         </div>
-      </form>
-
     </div>
-  </div>
-
-
-  <div class="row bottom">
-    <div class="col-9">
-      <h1 class="text-white">Selected Seats : <span id="slots"></span></h1>
-      <h2 class="text-white">Total Price: <span id="total-price">Rs 0.00</span></h2>  <!-- Total Price Display -->
+    <div class="row bottom">
+        <div class="col-9">
+            <h1 class="text-white">Selected Seats: <span id="slots"></span></h1>
+            <h2 class="text-white">Total Price: <span id="total-price">Rs 0.00</span></h2>
+        </div>
+        <div class="col-3">
+            {% if user.is_authenticated %}
+            <button type="button" id="proceedToPayment" class="btn btn-lg btn-block btn-secondary">Proceed to
+                Payment</button>
+            {% else %}
+            <a href="/accounts/login" class="btn btn-lg btn-block btn-secondary">Login To Book</a>
+            {% endif %}
+        </div>
     </div>
-    <div class="col-3">
-      {% if user.is_authenticated %}
-      <button type="submit" form="book" class="btn btn-lg btn-block btn-secondary"> Confirm Booking </button>
-      {% else %}
-      <a href="/accounts/login" class="btn btn-lg btn-block btn-secondary"> Login To Book </a>
-      {% endif %}
-    </div>
-  </div>
-
-</div>
-<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmationModalLabel">Booking Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h4>Selected Seats: <span id="modal-seats"></span></h4>
-        <p>Movie: <span id="modal-movie-name"></span></p>
-        <p>Cinema: <span id="modal-cinema-name"></span></p>
-        <p>Show Time: <span id="modal-show-time"></span></p>
-        <p>Price: Rs <span id="modal-price"></span></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" onclick="submitBooking()">Confirm Booking</button>
-      </div>
-    </div>
-  </div>
 </div>
 
-
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirm Booking</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Movie:</strong> <span id="modal-movie-name"></span></p>
+                <p><strong>Cinema:</strong> <span id="modal-cinema-name"></span></p>
+                <p><strong>Show Time:</strong> <span id="modal-show-time"></span></p>
+                <p><strong>Selected Seats:</strong> <span id="modal-seats"></span></p>
+                <p><strong>Total Price:</strong> Rs <span id="modal-price"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitSelection()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block JQuery %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-  // Trigger modal on button click
-  $("button[type='submit']").click(function(event) {
-    event.preventDefault();
+$(document).ready(function() {
+    // Mark booked seats
+    {% for seat in seat %}
+    $("{{seat.useat}}").addClass("notvacant").children("input").prop("disabled", true);
+    $("{{seat.useat}}").children("label").remove();
+    {% endfor %}
 
-    var selectedSeats = [];
-    var totalPrice = 0.0;
-    $.each($("input[name='check']:checked"), function() {
-    var seatPrice = parseFloat($("#ticket_price").val());  // Parse the price as a number
-    selectedSeats.push($(this).val());  // Get the seat number
-    if (!isNaN(seatPrice)) {  // Check if the parsed price is a valid number
-      totalPrice += seatPrice; // Add the price of the seat
-    }
-  });
+    // Handle seat selection
+    $(".seat").click(function() {
+        try {
+            var selectedSeats = [];
+            var total_price = 0;
+            var seatPrice = parseFloat($("#ticket_price").val());
+            
+            $("input[name='check']:checked").each(function() {
+                selectedSeats.push($(this).val());
+                if (!isNaN(seatPrice)) {
+                    total_price += seatPrice;
+                }
+            });
 
-    var movieName = "{{ show.movie.movie_name }}";
-    var cinemaName = "{{ show.cinema.cinema_name }}";
-    var showTime = "{{ show.time }}";
-
-    $("#modal-seats").text(selectedSeats.join(", "));
-    $("#modal-movie-name").text(movieName);
-    $("#modal-cinema-name").text(cinemaName);
-    $("#modal-show-time").text(showTime);
-    $("#modal-price").text(totalPrice);
-
-    $("#confirmationModal").modal("show");
-  });
-
-  // Submit booking after confirmation
-  function submitBooking() {
-    $("#book").submit();
-  }
-</script>
-
-{% for seat in seat%}
-<script type="text/javascript">
-  $("{{seat.useat}}").addClass("notvacant").children("input").prop("disabled", true);
-  $("{{seat.useat}}").children("label").remove();
-</script>
-{% endfor %}
-
-<script type="text/javascript">
-  $(".seat").click(function () {
-    var favorite = [];
-    var total_price = 0;
-    $.each($("input[name='check']:checked"), function () {
-        var seatPrice = parseFloat($("#ticket_price").val());  // Parse the price as a number
-        favorite.push($(this).val());
-        if (!isNaN(seatPrice)) {  // Check if the parsed price is a valid number
-            total_price += seatPrice; // Add the price of the seat
+            // Update display
+            $("#slots").text(selectedSeats.join(", "));
+            $("#total-price").text("Rs " + total_price.toFixed(2));
+            
+            // Update hidden form fields
+            $("#selected_seats").val(selectedSeats.join(","));
+            $("#total_amount").val(total_price.toFixed(2));
+        } catch (error) {
+            console.error("Error in seat selection:", error);
         }
     });
 
-    $("#slots").empty().append(favorite.join(", "));
-    $("#total-price").text("Rs "+total_price);
+    // Handle proceed to payment button
+    $("#proceedToPayment").click(function() {
+        try {
+            var selectedSeats = $("input[name='check']:checked");
+            
+            if (selectedSeats.length === 0) {
+                alert("Please select at least one seat.");
+                return;
+            }
 
-  });
+            // Populate modal with booking details
+            $("#modal-movie-name").text("{{ show.movie.movie_name }}");
+            $("#modal-cinema-name").text("{{ show.cinema.cinema_name }}");
+            $("#modal-show-time").text("{{ show.time }}");
+            $("#modal-seats").text($("#slots").text());
+            $("#modal-price").text($("#total-price").text().replace("Rs ", ""));
+
+            // Show confirmation modal
+            $("#confirmationModal").modal("show");
+        } catch (error) {
+            console.error("Error in proceed to payment:", error);
+        }
+    });
+});
+
+// Form submission function
+function submitSelection() {
+    try {
+        $("#book").submit();
+    } catch (error) {
+        console.error("Error in form submission:", error);
+    }
+}
 </script>
-
-
 {% endblock %}
+

@@ -1,181 +1,180 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-<title>BoxOffice - Ticket</title>
+<title>BoxOffice - Payment</title>
 {% endblock %}
 
 {% block style%}
 <style>
-  :root {
-    --primary-color: #1a1f2c;
-    --secondary-color: #2d3446;
-    --accent-color: #3498db;
-    --text-color: #ffffff;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+    :root {
+        --primary-color: #1a1f2c;
+        --secondary-color: #2d3446;
+        --accent-color: #3498db;
+        --text-color: #ffffff;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-  body {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
-  }
+    body {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+    }
 
-  .card {
-    margin: 50px auto;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
+    .card {
+        margin: 50px auto;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
 
-  .pass-h {
-    background: linear-gradient(45deg, #1a1a1a, #2c3e50);
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
+    .pass-h {
+        background: linear-gradient(45deg, #1a1a1a, #2c3e50);
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-  .title {
-    color: var(--text-color);
-    padding: 15px;
-    text-decoration: none;
-  }
+    .title {
+        color: var(--text-color);
+        padding: 15px;
+        text-decoration: none;
+    }
 
-  .title h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
+    .title h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
 
-  .title i {
-    color: var(--accent-color);
-    margin-right: 10px;
-  }
+    .title i {
+        color: var(--accent-color);
+        margin-right: 10px;
+    }
 
-  .ticket-content {
-    padding: 30px;
-  }
+    .ticket-content {
+        padding: 30px;
+    }
 
-  .qr-code {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-  }
+    .qr-code {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+    }
 
-  .ticket-info h3 {
-    color: var(--text-color);
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
+    .ticket-info h3 {
+        color: var(--text-color);
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
 
-  .ticket-info span {
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 400;
-    margin-left: 10px;
-  }
+    .ticket-info span {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+        margin-left: 10px;
+    }
 
-  .location-info {
-    background: rgba(0, 0, 0, 0.3);
-    color: var(--text-color);
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
+    .location-info {
+        background: rgba(0, 0, 0, 0.3);
+        color: var(--text-color);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
 
-  .location-info i {
-    color: var(--accent-color);
-    margin-right: 10px;
-  }
+    .location-info i {
+        color: var(--accent-color);
+        margin-right: 10px;
+    }
 
-  .payment-form {
-    margin-top: 20px;
-  }
+    .payment-form {
+        margin-top: 20px;
+    }
 
-  .submit-button {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    width: 100%;
-    margin-top: 20px;
-  }
+    .submit-button {
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+        width: 100%;
+        margin-top: 20px;
+    }
 
-  .submit-button:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-  }
+    .submit-button:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-8 card">
-      <div class="row justify-content-around pass-h">
-        <div class="col-4">
-          <h2 class="title"><i class="fa fa-video-camera"></i>BoxOffice</h2>
-        </div>
-        <div class="col-6">
-          <h2 class="title text-center">{{ ticket.shows.movie.movie_name }}
-            <small>({{ ticket.shows.cinema.cinema_name }})</small>
-          </h2>
-        </div>
-      </div>
+    <div class="row justify-content-center">
+        <div class="col-8 card">
+            <div class="row justify-content-around pass-h">
+                <div class="col-4">
+                    <h2 class="title"><i class="fa fa-video-camera"></i>BoxOffice</h2>
+                </div>
+                <div class="col-6">
+                    <h2 class="title text-center">{{ show.movie.movie_name }}
+                        <small>({{ show.cinema.cinema_name }})</small>
+                    </h2>
+                </div>
+            </div>
 
-      <div class="row ticket-content">
-        <div class="col-3">
-          <div class="qr-code">
-            <img class="img-fluid"
-              src="https://www.ruletech.com.au/wp-content/uploads/2018/06/qr-code-rule-website.png">
-          </div>
-        </div>
-        <div class="col-9 ticket-info">
-          <div class="row">
-            <div class="col-6">
-              <h3>Booking ID: <span>{{ ticket.pk }}</span></h3>
-              <h3>Date: <span>{{ ticket.shows.date }}</span></h3>
-              <h3>Price: <span>₹{{ total_price }}</span></h3>
-            </div>
-            <div class="col-6">
-              <h3>Seats: <span>{{ ticket.useat }}</span></h3>
-              <h3>Time: <span>{{ ticket.shows.time }}</span></h3>
-            </div>
-            <div class="col-12">
-              <div class="location-info">
-                <i class="fa fa-location-arrow"></i>
-                {{ ticket.shows.cinema.cinema_name }}:
-                <span>{{ ticket.shows.cinema.address }}</span>
-              </div>
-            </div>
-          </div>
+            <div class="row ticket-content">
+                <div class="col-3">
+                    <div class="qr-code">
+                        <img class="img-fluid" src="{% static 'images/placeholder-qr.png' %}">
+                    </div>
+                </div>
+                <div class="col-9 ticket-info">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Show Date: <span>{{ show.date }}</span></h3>
+                            <h3>Total Price: <span>₹{{ total_price }}</span></h3>
+                        </div>
+                        <div class="col-6">
+                            <h3>Selected Seats: <span>{{ selected_seats }}</span></h3>
+                            <h3>Show Time: <span>{{ show.time }}</span></h3>
+                        </div>
+                        <div class="col-12">
+                            <div class="location-info">
+                                <i class="fa fa-location-arrow"></i>
+                                {{ show.cinema.cinema_name }}:
+                                <span>{{ show.cinema.address }}</span>
+                            </div>
+                        </div>
+                    </div>
 
-          <form class="payment-form" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
-            <input type="hidden" id="amount" name="amount" value="{{total_price}}" required>
-            <input type="hidden" id="tax_amount" name="tax_amount" value="0" required>
-            <input type="hidden" id="total_amount" name="total_amount" value="{{total_price}}" required>
-            <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="{{uuid}}" required>
-            <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required>
-            <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required>
-            <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
-            <input type="hidden" id="success_url" name="success_url" value="https://esewa.com.np" required>
-            <input type="hidden" id="failure_url" name="failure_url" value="https://google.com" required>
-            <input type="hidden" id="signed_field_names" name="signed_field_names"
-              value="total_amount,transaction_uuid,product_code" required>
-            <input type="hidden" id="signature" name="signature" value="{{signature}}" required>
-            <input class="submit-button" value="Proceed to Payment" type="submit">
-          </form>
+                    <form class="payment-form" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form"
+                        method="POST">
+                        <input type="hidden" name="amount" value="{{total_price}}" required>
+                        <input type="hidden" name="tax_amount" value="0" required>
+                        <input type="hidden" name="total_amount" value="{{total_price}}" required>
+                        <input type="hidden" name="transaction_uuid" value="{{uuid}}" required>
+                        <input type="hidden" name="product_code" value="EPAYTEST" required>
+                        <input type="hidden" name="product_service_charge" value="0" required>
+                        <input type="hidden" name="product_delivery_charge" value="0" required>
+                        <input type="hidden" name="success_url" value="http://127.0.0.1:8000" required>
+                        <input type="hidden" name="failure_url" value="https://www.qfxcinemas.com/" required>
+                        <input type="hidden" name="signed_field_names"
+                            value="total_amount,transaction_uuid,product_code" required>
+                        <input type="hidden" name="signature" value="{{signature}}" required>
+                        <input class="submit-button" value="Proceed to Payment" type="submit">
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 {% endblock %}

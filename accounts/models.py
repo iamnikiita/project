@@ -45,7 +45,11 @@ class Bookings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shows = models.ForeignKey(Shows, on_delete=models.CASCADE)
     useat = models.CharField(max_length=100)
+    payment_status = models.CharField(max_length=20, default='pending')  # or use choices
     
+    @property
+    def useat_as_list(self):
+        return self.useat.split(',')
     @property
     def useat_as_list(self):
         return self.useat.split(',')
