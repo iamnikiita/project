@@ -14,9 +14,6 @@ def genSha256(key, message):
         digest = hmac_sha256.digest()
 
         signature = base64.b64encode(digest).decode('utf-8')
-
-        return signature
-
         return signature
 def index(request):
     movies = Movie.objects.all().order_by('-movie_rating')
