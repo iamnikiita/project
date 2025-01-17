@@ -6,113 +6,114 @@
 
 {% block style%}
 <style>
-    :root {
-        --primary-color: #1a1f2c;
-        --secondary-color: #2d3446;
-        --accent-color: #3498db;
-        --text-color: #ffffff;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-    body {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        min-height: 100vh;
-        font-family: 'Inter', sans-serif;
-    }
+  :root {
+    --primary-color: #1a1f2c;
+    --secondary-color: #2d3446;
+    --accent-color: #3498db;
+    --text-color: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .card {
-        margin: 50px auto;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-    }
+  body {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
 
-    .pass-h {
-        background: linear-gradient(45deg, #1a1a1a, #2c3e50);
-        padding: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  .card {
+    margin: 50px auto;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
 
-    .title {
-        color: var(--text-color);
-        padding: 15px;
-        text-decoration: none;
-    }
+  .pass-h {
+    background: linear-gradient(45deg, #1a1a1a, #2c3e50);
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .title h2 {
-        margin: 0;
-        font-size: 1.8rem;
-        font-weight: 600;
-    }
+  .title {
+    color: var(--text-color);
+    padding: 15px;
+    text-decoration: none;
+  }
 
-    .title i {
-        color: var(--accent-color);
-        margin-right: 10px;
-    }
+  .title h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
 
-    .ticket-content {
-        padding: 30px;
-    }
+  .title i {
+    color: var(--accent-color);
+    margin-right: 10px;
+  }
 
-    .qr-code {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: var(--shadow);
-    }
+  .ticket-content {
+    padding: 30px;
+  }
 
-    .ticket-info h3 {
-        color: var(--text-color);
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
+  .qr-code {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
 
-    .ticket-info span {
-        color: rgba(255, 255, 255, 0.8);
-        font-weight: 400;
-        margin-left: 10px;
-    }
+  .ticket-info h3 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
 
-    .location-info {
-        background: rgba(0, 0, 0, 0.3);
-        color: var(--text-color);
-        padding: 15px 20px;
-        border-radius: 10px;
-        margin-top: 20px;
-        font-size: 1.1rem;
-        line-height: 1.5;
-    }
+  .ticket-info span {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    margin-left: 10px;
+  }
 
-    .location-info i {
-        color: var(--accent-color);
-        margin-right: 10px;
-    }
+  .location-info {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
 
-    .payment-form {
-        margin-top: 20px;
-    }
+  .location-info i {
+    color: var(--accent-color);
+    margin-right: 10px;
+  }
 
-    .submit-button {
-        background: var(--accent-color);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: transform 0.2s, background 0.2s;
-        width: 100%;
-        margin-top: 20px;
-    }
+  .payment-form {
+    margin-top: 20px;
+  }
 
-    .submit-button:hover {
-        background: #2980b9;
-        transform: translateY(-2px);
-    }
+  .submit-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .submit-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
 </style>
 {% endblock %}
 
@@ -165,7 +166,7 @@
                         <input type="hidden" name="product_code" value="EPAYTEST" required>
                         <input type="hidden" name="product_service_charge" value="0" required>
                         <input type="hidden" name="product_delivery_charge" value="0" required>
-                        <input type="hidden" name="success_url" value="http://127.0.0.1:8000" required>
+                        <input type="hidden" name="success_url" value="http://127.0.0.1:8000/seat/" required>
                         <input type="hidden" name="failure_url" value="https://www.qfxcinemas.com/" required>
                         <input type="hidden" name="signed_field_names"
                             value="total_amount,transaction_uuid,product_code" required>
