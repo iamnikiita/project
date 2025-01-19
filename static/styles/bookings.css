@@ -1,0 +1,27 @@
+body {
+  background: linear-gradient(250deg, #f0eeee85, #a57b7b61), url(../images/bookings.jpg);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.submit {
+  background-image: linear-gradient(25deg, #181717, #5c5959);
+  color: rgb(255, 252, 252);
+  border: none;
+}
+
+.submit:hover {
+  background-image: none;
+  border: 1px solid #555353;
+  font-weight: 600;
+}
+
+.alert {
+  bottom: 5px;
+  right: 25px;
+  position: absolute;
+  z-index: 15;
+  width: 500px;
+}
