@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from accounts.models import *
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 import hmac
 import hashlib
 import base64
@@ -15,6 +15,20 @@ def genSha256(key, message):
 
         signature = base64.b64encode(digest).decode('utf-8')
         return signature
+
+
+def generate_signature(request):
+    total_price = request.GET.get('total_price')
+    uuid_val = request.GET.get('transactionId')
+
+    if not total_price:
+        return JsonResponse({'error': 'total_price is required'}, status=400)
+
+    data_to_sign = f"total_amount={total_price},transaction_uuid={uuid_val},product_code=EPAYTEST"
+    secret_key = "8gBm/:&EnhH.1/q"
+    signature = genSha256(secret_key, data_to_sign)
+    return JsonResponse({'signature': signature})
+
 def index(request):
     movies = Movie.objects.all().order_by('-movie_rating')
     context = {
@@ -36,16 +50,20 @@ def movies(request, id):
 def seat(request, id):
     show = Shows.objects.get(shows=id)
     seat = Bookings.objects.filter(shows=id)
-    return render(request,"seat.html", {'show': show, 'seat': seat})
+    return render(request,"seat.html", {'show': show, 'seat': seat, 'uuid': uuid.uuid4()})
 
 def booked(request):
-    if request.method == 'POST':
-        user = request.user
-        seat = ','.join(request.POST.getlist('check'))
-        show = request.POST['show']
-        book = Bookings(useat=seat, shows_id=show, user=user)
-        book.save()
-        return render(request,"booked.html", {'book': book})
+    seat = request.GET.get('check')
+    url_string = request.GET.get('show')
+    show = url_string.split('?')[0]
+    print("show===>"+show)
+    # if request.method == 'POST':
+    user = request.user
+    # seat = ','.join(request.POST.getlist('check'))
+    # show = request.POST['show']
+    book = Bookings(useat=seat, shows_id=show, user=user)
+    book.save()
+    return render(request, "booked.html", {'book': book})
 
 def ticket(request, id):
     ticket = Bookings.objects.get(id=id)

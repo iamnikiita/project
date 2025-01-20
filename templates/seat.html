@@ -232,6 +232,22 @@
     </div>
   </div>
 
+<form class="payment-form" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" id="esewaPayment">
+            <input type="hidden" id="amount" name="amount" value="" required>
+            <input type="hidden" id="tax_amount" name="tax_amount" value="0" required>
+            <input type="hidden" id="total_amount" name="total_amount" value="" required>
+            <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="{{uuid}}" required>
+            <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required>
+            <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required>
+            <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
+            <input type="hidden" id="success_url" name="success_url" value="" required>
+            <input type="hidden" id="failure_url" name="failure_url" value="http://localhost:8000" required>
+            <input type="hidden" id="signed_field_names" name="signed_field_names"
+              value="total_amount,transaction_uuid,product_code" required>
+            <input type="hidden" id="signature" name="signature" value="" required>
+            <input class="submit-button" value="Proceed to Payment" type="submit">
+          </form>
+
 
   <div class="row bottom">
     <div class="col-9">
@@ -304,9 +320,26 @@
     $("#confirmationModal").modal("show");
   });
 
-  // Submit booking after confirmation
+    // Submit booking after confirmation
   function submitBooking() {
-    $("#book").submit();
+      check = $('input[name="check"]:checked').map(function () {
+          return $(this).val();
+      }).get().join(', ');
+      totalPrice = $("#modal-price").text()
+      $("#success_url").val(`http://localhost:8000/booked?check=${encodeURIComponent(check)}&show={{ show.pk }}`)
+      $("#total_amount").val(totalPrice)
+      $("#amount").val(totalPrice)
+      fetch(`/generate-signature/?total_price=${encodeURIComponent(totalPrice)}&transactionId={{ uuid }}`, {
+          method: 'GET',
+      })
+          .then(response => response.json())  // Parse the response as JSON
+          .then(data => {
+              document.getElementById('signature').value = data.signature;
+              $("#esewaPayment").submit();
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
   }
 </script>
 

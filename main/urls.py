@@ -10,5 +10,6 @@ urlpatterns=[
     path('seat/<int:id>',views.seat,name='seat'),
     path('booked',views.booked,name='booked'),
     path('ticket/<int:id>',views.ticket,name='ticket'),
+    path('generate-signature/', views.generate_signature, name='generate_signature'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
